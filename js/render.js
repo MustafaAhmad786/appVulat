@@ -8,6 +8,27 @@
  * @param {number} rating - e.g. 4.5
  * @returns {string}
  */
+
+const DB_URL = "https://appvault-flutterapp-store-web-default-rtdb.asia-southeast1.firebasedatabase.app/"
+
+async function getDownloadCount(appName) {
+  const key = appName.replace(/\s+/g, '_').toLowerCase();
+  const res = await fetch(`${DB_URL}/downloads/${key}.json`);
+  const val = await res.json();
+  return val || 0;
+}
+
+async function incrementCount(appName) {
+  const key = appName.replace(/\s+/g, '_').toLowerCase();
+  const count = await getDownloadCount(appName);
+  await fetch(`${DB_URL}/downloads/${key}.json`, {
+    method: 'PUT',
+    body: JSON.stringify(count + 1)
+  });
+  return count + 1;
+}
+
+
 function buildStars(rating) {
   const full = Math.floor(rating);
   const half = rating % 1 >= 0.5 ? '½' : '';
@@ -84,11 +105,14 @@ function buildAppCard(app, index) {
     </div>
 
     <div class="dl-buttons">
-      <a href="${hasApk ? app.apkUrl : '#'}"
-         class="dl-btn dl-android ${!hasApk ? 'disabled' : ''}"
-         ${hasApk ? 'download' : ''}
-         title="${!hasApk ? 'APK available nahi' : 'Android APK download karein'}">
-        ${androidIcon()} Android APK
+     <a href="${hasApk ? app.apkUrl : '#'}"
+   id="btn-${app.name.replace(/\s+/g,'_')}"
+   class="dl-btn dl-android ${!hasApk ? 'disabled' : ''}"
+   ${hasApk ? 'download' : ''}
+   onclick="handleDownload(event, '${app.name}')">
+      
+${androidIcon()} Android APK
+<span class="dl-count" id="count-${app.name.replace(/\s+/g, '_')}">...</span>
       </a>
       <a href="${hasIpa ? app.ipaUrl : '#'}"
          class="dl-btn dl-ios ${!hasIpa ? 'disabled' : ''}"
@@ -125,4 +149,19 @@ function renderApps(list) {
   list.forEach((app, i) => {
     grid.appendChild(buildAppCard(app, i));
   });
+}
+
+
+async function handleDownload(event, appName) {
+  const key = appName.replace(/\s+/g, '_');
+  const newCount = await incrementCount(appName);
+  document.getElementById('count-' + key).textContent = newCount;
+}
+
+async function loadAllCounts() {
+  for (const app of appsData) {
+    const count = await getDownloadCount(app.name);
+    const el = document.getElementById('count-' + app.name.replace(/\s+/g,'_'));
+    if (el) el.textContent = count;
+  }
 }

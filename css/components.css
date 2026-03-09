@@ -227,3 +227,12 @@
   margin-bottom: .5rem;
   color: var(--text);
 }
+
+/* apk count */
+.dl-count {
+  font-size: 0.75rem;
+  background: rgba(0,0,0,0.2);
+  padding: 1px 7px;
+  border-radius: 10px;
+  margin-left: 4px;
+}

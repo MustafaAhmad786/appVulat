@@ -69,3 +69,5 @@ function init() {
 
 // DOM ready hone par init chalao
 document.addEventListener('DOMContentLoaded', init);
+
+loadAllCounts();
