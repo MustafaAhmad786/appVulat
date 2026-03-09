@@ -1,0 +1,229 @@
+/* ══════════════════════════════════════════════
+   components.css  —  UI Components
+   AppVault Flutter App Store
+══════════════════════════════════════════════ */
+
+/* ── APP CARD ── */
+.app-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp .4s both;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0);    }
+}
+
+.app-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(79,142,247,0.04) 0%, transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.app-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(79,142,247,0.3);
+  box-shadow: var(--shadow-card);
+}
+
+.app-card:hover::before { opacity: 1; }
+
+/* ── CARD HEADER ── */
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.app-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 15px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.app-info { flex: 1; min-width: 0; }
+
+.app-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+
+.app-dev {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.app-cat-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background: rgba(79,142,247,0.12);
+  color: var(--accent);
+}
+
+/* ── DESCRIPTION ── */
+.app-desc {
+  font-size: 0.925rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 18px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── META INFO ── */
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.meta-item svg { opacity: .6; }
+
+.stars { color: #f5a623; font-size: 0.9rem; }
+
+.version-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── DOWNLOAD BUTTONS ── */
+.dl-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+}
+
+.dl-android {
+  background: rgba(61,220,132,0.12);
+  color: var(--android);
+  border: 1px solid rgba(61,220,132,0.25);
+}
+
+.dl-android:hover {
+  background: var(--android);
+  color: #000;
+  border-color: var(--android);
+}
+
+.dl-ios {
+  background: rgba(26,158,245,0.12);
+  color: var(--ios);
+  border: 1px solid rgba(26,158,245,0.25);
+}
+
+.dl-ios:hover {
+  background: var(--ios);
+  color: #fff;
+  border-color: var(--ios);
+}
+
+.dl-btn.disabled {
+  opacity: .3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── BADGES ── */
+.badge-new {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── iOS NOTICE ── */
+.ios-notice {
+  background: rgba(26,158,245,0.08);
+  border: 1px solid rgba(26,158,245,0.2);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: 0.9rem;
+  color: rgba(100,180,255,0.8);
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.5;
+}
+
+.ios-notice span { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 5rem 2rem;
+  color: var(--muted);
+}
+
+.empty-state svg { opacity: .2; margin-bottom: 1rem; }
+
+.empty-state h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: .5rem;
+  color: var(--text);
+}

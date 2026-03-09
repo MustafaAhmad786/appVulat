@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AppVault — Flutter App Store</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+  <!-- Background Effects -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- ── NAVBAR ── -->
+  <nav id="navbar">
+    <a class="logo" href="#">
+      <div class="logo-icon">🚀</div>
+      AppVault
+    </a>
+    <div class="nav-right">
+      <span class="nav-badge">Flutter Apps</span>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+
+    <!-- <div class="hero-tag">✦Flutter App Hub</div> -->
+    <h1>Download Apps<br/>Built with Flutter</h1>
+    <p>Tamam apps ek jagah. Android aur iOS dono ke liye direct download — fast, free, aur asaan.</p>
+
+    <div class="search-wrap">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input id="searchInput" type="text" placeholder="App search karo..." />
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num" id="totalApps">0</div>
+      <div class="stat-label">Total Apps</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Free</div>
+      <div class="stat-label">Always</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Platforms</div>
+    </div>
+  </div>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="main-section">
+
+    <!-- iOS Notice -->
+    <!-- <div class="ios-notice">
+      <span>ℹ️</span>
+      <div>
+        <strong>iOS Users ke liye:</strong> IPA file install karne ke liye
+        <strong>AltStore</strong> ya <strong>Sideloadly</strong> use karein.
+        Apple ki wajah se direct install restricted hai.
+      </div>
+    </div> -->
+
+    <!-- Categories -->
+    <p class="section-label">Categories</p>
+    <div class="categories" id="catBar">
+      <button class="cat-btn active" data-cat="all">🔥 All Apps</button>
+      <button class="cat-btn" data-cat="utility">🛠️ Utility</button>
+      <button class="cat-btn" data-cat="education">📚 Education</button>
+      <button class="cat-btn" data-cat="business">💼 Business</button>
+      <button class="cat-btn" data-cat="social">💬 Social</button>
+      <button class="cat-btn" data-cat="game">🎮 Games</button>
+      <button class="cat-btn" data-cat="health">💪 Health</button>
+    </div>
+
+    <!-- App Grid -->
+    <div id="appGrid"></div>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    Made with ❤️ using <strong>Flutter</strong> &amp; hosted on
+    <strong>GitHub Pages / Netlify</strong>
+    <br/><br/>
+    <!-- <span class="footer-hint">
+      Apps add karne ke liye <code>js/apps-data.js</code> edit karein
+    </span> -->
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/apps-data.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
